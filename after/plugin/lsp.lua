@@ -1,12 +1,9 @@
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-	-- lsp_zero.default_keymaps({ buffer = bufnr, exclude = { '<F2>' }})
-
 	-- see :help lsp-zero-keybinding
 	-- to learn the available actions
 	local opts = { buffer = bufnr }
-
 
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 
@@ -39,4 +36,8 @@ require('mason-lspconfig').setup({
 	handlers = {
 		lsp_zero.default_setup,
 	},
+})
+
+vim.diagnostic.config({
+    virtual_text = true
 })
