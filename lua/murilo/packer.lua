@@ -47,19 +47,13 @@ return require('packer').startup(function(use)
         end
     }
 
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional
-        },
-    }
+    use 'nvim-tree/nvim-web-devicons'
 
     use {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
+        'nvim-tree/nvim-tree.lua',
     }
+
+    use { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 }
 
     use {
         'VonHeikemen/lsp-zero.nvim',

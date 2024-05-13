@@ -6,7 +6,8 @@ wk.register({
             name = "File",
             f = { "<cmd>Telescope find_files<cr>", "Find File" },
             g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-            r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" }
+            r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
+            h = { "Help Files" }
         },
 
         l = {
@@ -22,15 +23,23 @@ wk.register({
             p = { ":bp<CR>", "Previous Buffer" },
             d = { ":bd<CR>", "Delete Buffer" },
             b = { ":Telescope buffers<CR>", "List Buffers" }
+        },
+
+        e = { "+Explorer" },
+
+        v = {
+            name = "View",
+            d = { "Diagnostics" },
         }
     },
 
     ["g"] = {
-        d = {"Go to definition"},
-        D = {"Go to declaration"},
-        i = {"Go to implementation"},
+        d = { "Go to definition" },
+        D = { "Go to declaration" },
+        i = { "Go to implementation" },
+        s = { "Go to signature" },
+    },
 
 
 
-    }
 })
