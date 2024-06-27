@@ -36,10 +36,6 @@ require("lspconfig").gopls.setup {
       staticcheck = true,
       gofumpt = true,
       usePlaceholders = true,
-      analyses = {
-        unusedvariable = true,
-        shadow = true,
-      },
     },
   },
 }
