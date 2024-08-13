@@ -7,7 +7,7 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+-- map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
@@ -25,8 +25,8 @@ local nomap = vim.keymap.del
 --omap("n", "<leader>wk")
 --nomap("n", "<leader>wK")
 
---nomap("n", "<leader>v")
---nomap("n", "<leader>h")
+nomap("n", "<leader>v")
+nomap("n", "<leader>h")
 --nomap({ "n", "t" }, "<A-i>")
 --nomap({ "n", "t" }, "<A-h>")
 --nomap({ "n", "t" }, "<A-v>")

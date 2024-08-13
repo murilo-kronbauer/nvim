@@ -5,18 +5,37 @@ local on_init = configs.on_init
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd", "rust_analyzer", "lua_ls", "gopls" }
+local servers = { "html", "cssls", "clangd", "rust_analyzer", "lua_ls", "gopls", "tsserver", "eslint" }
 
 local attach = function(client, bufnr)
   on_attach(client, bufnr)
 
-  local function opts(desc)
-    return { buffer = bufnr, desc = "LSP " .. desc }
-  end
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "LSP Hover" })
+  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr, desc = "LSP References" })
+  vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", { buffer = bufnr, desc = "LSP References" })
+  vim.keymap.set(
+    "n",
+    "gD",
+    "<cmd>Telescope lsp_type_definitions<cr>",
+    { buffer = bufnr, desc = "LSP Type definitions" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>fs",
+    "<cmd>Telescope lsp_document_symbols<cr>",
+    { buffer = bufnr, desc = "LSP Document symbols" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>fd",
+    "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+    { buffer = bufnr, desc = "LSP Dynamic workspace symbols" }
+  )
 
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts "Hover")
-
-  vim.keymap.set("n", "gd", "<cmd> Telescope <CR>", { buffer = bufnr })
+  -- Diagnostics
+  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, { buffer = bufnr, desc = "LSP Open diagnostic" })
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "LSP Next diagnostic" })
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "LSP Previous diagnostic" })
 end
 
 for _, lsp in ipairs(servers) do
@@ -36,37 +55,6 @@ require("lspconfig").gopls.setup {
       staticcheck = true,
       gofumpt = true,
       usePlaceholders = true,
-    },
-  },
-}
--- Without the loop, you would have to manually set up each LSP
---
--- lspconfig.html.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
--- }
---
--- lspconfig.cssls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
--- }
-
-local bkp = {
-  html = {},
-  awk_ls = {},
-  bashls = {},
-  rust_analyzer = {},
-  gopls = {
-    settings = {
-      gopls = {
-        staticcheck = true,
-        gofumpt = true,
-        usePlaceholders = true,
-        analyses = {
-          unusedvariable = true,
-          shadow = true,
-        },
-      },
     },
   },
 }
